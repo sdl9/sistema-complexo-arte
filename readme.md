@@ -6,5 +6,3 @@ Etapa 1 - Modelo mínimo:
 - Criar venda;
 - Add produto na venda;
 - Calcular total;
-
-
