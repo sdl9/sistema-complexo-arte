@@ -1,0 +1,8 @@
+class ItemVenda:
+
+    def __init__ (self, produto, quantidade):
+        self.produto = produto
+        self.quantidade = quantidade
+    
+    def calcular_subtotal(self):
+        return self.quantidade * self.produto.preco
