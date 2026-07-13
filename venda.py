@@ -3,8 +3,8 @@ class Venda:
     def __init__ (self):
         self.itens = []
     
-    def add_produto(self, produto):
-        self.itens.append(produto)
+    def add_item(self, item):
+        self.itens.append(item)
 
     # Calcular total da VENDA. O 'for' fica responsável por isso.
     def calcular_total(self):
@@ -12,27 +12,27 @@ class Venda:
 
         # Para cada produto na lista de produtos (self.produtos), calcule o total, somando o total atual, ao subtotal (que é ref. a UM produto)
         for item in self.itens:
-            total = total + calcular_subtotal()
+            total = total + item.calcular_subtotal()
         return total
     
     def resumo_venda(self):
         print ("Produtos da venda: ")
 
-        for numero, produto in enumerate (self.itens, start=1):
+        for numero, item in enumerate (self.itens, start=1):
             print (
                 numero,
                 "-",
-                produto.nome, 
+                item.produto.nome, 
                 "|", 
-                produto.quantidade,
+                item.quantidade,
                 "x", 
                 "|",
                 "R$",
-                produto.preco, 
+                item.produto.preco, 
                 "|",
                 "subtotal", 
                 "R$",
-                self.calcular_subtotal(produto)
+                item.calcular_subtotal()
             )
         
         print (

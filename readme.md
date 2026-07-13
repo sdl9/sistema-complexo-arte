@@ -10,3 +10,4 @@ Etapa 1 - Modelo mínimo:
 Produto    -> o cadastro do produto: nome, preço, estoque
 ItemVenda  -> um produto dentro de uma venda, com quantidade comprada
 Venda      -> lista de itens vendidos e total da venda
+
