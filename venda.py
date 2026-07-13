@@ -4,7 +4,10 @@ class Venda:
         self.itens = []
     
     def add_item(self, item):
-        self.itens.append(item)
+        if item.valido:
+            self.itens.append(item)
+        else:
+            print("Item sem quantidade suficiente para validar adição.")
 
     # Calcular total da VENDA. O 'for' fica responsável por isso.
     def calcular_total(self):

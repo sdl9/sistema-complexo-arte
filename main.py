@@ -3,8 +3,8 @@ from venda import Venda
 from itemVenda import ItemVenda
 
 # instanciando um produto e uma venda
-produto = Produto(1,"Ipa", 2, 20)
-produto2 = Produto(2,"Refri", 10, 5)
+produto = Produto(1,"Ipa", 20, 10)
+produto2 = Produto(2,"Refri", 5, 10)
 
 item = ItemVenda(produto, 2)
 item2 = ItemVenda(produto2, 1)
