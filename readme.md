@@ -49,7 +49,8 @@ Responsabilidades atuais:
 - calcular o subtotal daquele item;
 - verificar se ha estoque suficiente;
 - descontar o estoque quando a venda e possivel;
-- avisar quando nao ha estoque ou quando o estoque zera.
+- avisar quando nao ha estoque ou quando o estoque zera;
+- marcar o item como valido ou invalido com `self.valido`.
 
 Exemplo:
 
@@ -71,7 +72,7 @@ Representa uma venda completa.
 Responsabilidades atuais:
 
 - guardar uma lista de itens vendidos;
-- adicionar itens na venda;
+- adicionar somente itens validos na venda;
 - calcular o total da venda somando os subtotais;
 - mostrar um resumo da venda.
 
@@ -129,29 +130,21 @@ item.produto -> Produto dentro do item
 item.produto.nome -> nome do produto
 ```
 
-## Proximo passo
+## Etapa concluida: item valido/invalido
 
-Implementar a ideia de item valido/invalido.
-
-Problema atual:
-
-Mesmo quando nao ha estoque suficiente, o `ItemVenda` ainda pode ser criado e adicionado a venda.
-
-Proxima melhoria:
-
-No `ItemVenda`, criar um atributo:
+O `ItemVenda` agora cria o atributo:
 
 ```python
 self.valido = True
 ```
 
-Se nao houver estoque suficiente:
+Se nao houver estoque suficiente, o item fica invalido:
 
 ```python
 self.valido = False
 ```
 
-Depois, na classe `Venda`, alterar `add_item` para so adicionar itens validos:
+A classe `Venda` ja usa essa informacao em `add_item` para adicionar somente itens validos:
 
 ```python
 def add_item(self, item):
@@ -161,13 +154,23 @@ def add_item(self, item):
         print("Item invalido nao foi adicionado a venda.")
 ```
 
+## Proximo passo
+
+Impedir quantidade zero ou negativa em `ItemVenda`.
+
+Exemplo de regra:
+
+```python
+if quantidade <= 0:
+    print("Quantidade invalida.")
+    self.valido = False
+```
+
 ## Depois disso
 
 Possiveis proximos passos:
 
 - melhorar mensagens de erro;
-- impedir quantidade zero ou negativa;
 - mostrar estoque restante;
-- limpar comentarios antigos;
 - pensar em cadastro/lista de produtos;
 - futuramente permitir entrada de dados pelo usuario.
