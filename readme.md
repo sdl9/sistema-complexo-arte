@@ -7,8 +7,11 @@ Sistema inicialmente simplificado. Ao longo do projeto, ficara mais complexo e c
 O projeto evoluiu de um modelo simples com `Produto` e `Venda` para uma estrutura mais organizada com tres classes principais:
 
 - `Produto`: cadastro do produto.
+Produto fica no catalogo.
 - `ItemVenda`: produto dentro de uma venda, com quantidade comprada.
+ItemVenda usa um Produto.
 - `Venda`: lista de itens vendidos e total da venda.
+Venda guarda ItemVenda.
 
 ## Produto
 
@@ -154,23 +157,18 @@ def add_item(self, item):
         print("Item invalido nao foi adicionado a venda.")
 ```
 
-## Proximo passo
-
-Impedir quantidade zero ou negativa em `ItemVenda`.
-
-Exemplo de regra:
-
-```python
-if quantidade <= 0:
-    print("Quantidade invalida.")
-    self.valido = False
-```
-
 ## Depois disso
 
 Possiveis proximos passos:
 
-- melhorar mensagens de erro;
-- mostrar estoque restante;
 - pensar em cadastro/lista de produtos;
 - futuramente permitir entrada de dados pelo usuario.
+
+## Feito:
+- impedir quantidade zero ou negativa
+- mostrar estoque restante
+- melhorada mensagem de erro;
+
+## Proximo passo:
+- catalogo
+```

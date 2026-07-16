@@ -4,10 +4,14 @@ class ItemVenda:
         self.produto = produto
         self.quantidade = quantidade
         self.valido = True
+        self.motivo_invalido = None
 
-        if quantidade > produto.estoque or quantidade <= 0:
-            print ("Quantidade inválida ou Produto sem estoque disponível.")
+        if quantidade <= 0:
             self.valido = False
+            self.motivo_invalido = "Quantidade inválida."
+        elif quantidade > produto.estoque:
+            self.valido = False
+            self.motivo_invalido = "Produto sem estoque suficiente."
         else:
             produto.estoque = produto.estoque - quantidade
         
@@ -17,5 +21,5 @@ class ItemVenda:
     def calcular_subtotal(self):
         return self.quantidade * self.produto.preco
     
-    def calcular_estoque(self):
+    def estoque_restante(self):
         return self.produto.estoque

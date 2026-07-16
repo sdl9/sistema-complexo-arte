@@ -1,13 +1,13 @@
 class Venda:
 
     def __init__(self):
-        self.itens = []
+        self.itens = [] # = quais itens foram comprados nesta venda?
 
     def add_item(self, item):
         if item.valido:
             self.itens.append(item)
         else:
-            print("Item sem quantidade suficiente para validar adicao.")
+            print("Item não adicionado:", item.motivo_invalido)
 
     def calcular_total(self):
         total = 0
