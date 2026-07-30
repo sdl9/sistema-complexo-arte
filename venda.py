@@ -37,7 +37,7 @@ class Venda:
                 item.calcular_subtotal(),
                 "|",
                 "estoque restante:",
-                item.calcular_estoque()
+                item.estoque_restante()
             )
 
         print(
