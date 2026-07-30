@@ -13,13 +13,25 @@ catalogo = Catalogo()
 catalogo.adicionar_produto(produto)
 catalogo.adicionar_produto(produto2)
 
-produto_escolhido = catalogo.buscar_produto_por_id(2)
+venda = Venda()
 
-if produto_escolhido is None:
-    print("Produto não encontrado.")
-else:
-    item = ItemVenda(produto_escolhido, 2)
-    print(produto_escolhido.nome)
+continuar = "s"
 
-#venda = Venda()
+while continuar == "s":
+    id_digitado = input("Digite o ID do produto: ")
+    id_escolhido = int(id_digitado)
+    produto_escolhido = catalogo.buscar_produto_por_id(id_escolhido)
 
+    if produto_escolhido is None:   
+        print("Produto não encontrado.")
+            
+    else:
+        quantidade_digitada = input("Quantidade: ")
+        quantidade_escolhida = int(quantidade_digitada)
+
+        item = ItemVenda(produto_escolhido, quantidade_escolhida)
+        venda.add_item(item)
+
+    continuar = input("Adicionar outro item? (s/n): ").lower()
+
+venda.resumo_venda()
