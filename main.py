@@ -15,11 +15,17 @@ catalogo.adicionar_produto(produto2)
 
 venda = Venda()
 
+catalogo.listar_produtos()
+
 continuar = "s"
 
 while continuar == "s":
     id_digitado = input("Digite o ID do produto: ")
-    id_escolhido = int(id_digitado)
+    try:
+        id_escolhido = int(id_digitado)
+    except ValueError:
+        print("ID inválido. Digite um número de ID.")
+        continue
     produto_escolhido = catalogo.buscar_produto_por_id(id_escolhido)
 
     if produto_escolhido is None:   
@@ -27,7 +33,11 @@ while continuar == "s":
             
     else:
         quantidade_digitada = input("Quantidade: ")
-        quantidade_escolhida = int(quantidade_digitada)
+        try:
+            quantidade_escolhida = int(quantidade_digitada)
+        except ValueError:
+            print("Quantidade inválida. Digite um número.")
+            continue
 
         item = ItemVenda(produto_escolhido, quantidade_escolhida)
         venda.add_item(item)

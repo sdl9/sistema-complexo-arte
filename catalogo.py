@@ -7,7 +7,7 @@ class Catalogo:
 
     def listar_produtos(self):
         for produto in self.produtos:
-            print(produto.nome)
+            print(produto.id_produto, "-", produto.nome, "|", "R$", produto.preco, "|", "Estoque:", produto.estoque)
 
     def buscar_produto_por_id(self, id_procurado):
         for produto in self.produtos:
@@ -15,4 +15,5 @@ class Catalogo:
                 return produto
 
         return None
+
         
