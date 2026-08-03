@@ -1,174 +1,44 @@
-# Sistema de Caixa - Status do Projeto
+# Sistema de Caixa em Python
 
-Sistema inicialmente simplificado. Ao longo do projeto, ficara mais complexo e completo.
+Projeto didatico de um sistema de caixa executado no terminal. O objetivo e desenvolver conceitos de Python e orientacao a objetos enquanto o sistema evolui em pequenas etapas.
 
-## O que ja foi feito
+## Ideia do projeto
 
-O projeto evoluiu de um modelo simples com `Produto` e `Venda` para uma estrutura mais organizada com tres classes principais:
-
-- `Produto`: cadastro do produto.
-Produto fica no catalogo.
-- `ItemVenda`: produto dentro de uma venda, com quantidade comprada.
-ItemVenda usa um Produto.
-- `Venda`: lista de itens vendidos e total da venda.
-Venda guarda ItemVenda.
-
-## Produto
-
-Arquivo: `produto.py`
-
-Representa o cadastro de um produto no sistema.
-
-Responsabilidades atuais:
-
-- guardar o id do produto;
-- guardar o nome;
-- guardar o preco;
-- guardar o estoque disponivel.
-
-Exemplo:
-
-```python
-produto = Produto(1, "Ipa", 20, 10)
-```
-
-Significa:
-
-- id: `1`
-- nome: `"Ipa"`
-- preco: `20`
-- estoque: `10`
-
-## ItemVenda
-
-Arquivo: `itemVenda.py`
-
-Representa um produto dentro de uma venda.
-
-Responsabilidades atuais:
-
-- guardar qual produto esta sendo vendido;
-- guardar a quantidade comprada;
-- calcular o subtotal daquele item;
-- verificar se ha estoque suficiente;
-- descontar o estoque quando a venda e possivel;
-- avisar quando nao ha estoque ou quando o estoque zera;
-- marcar o item como valido ou invalido com `self.valido`.
-
-Exemplo:
-
-```python
-item = ItemVenda(produto, 2)
-```
-
-Significa:
-
-- vender `2` unidades daquele produto;
-- subtotal = `produto.preco * quantidade`.
-
-## Venda
-
-Arquivo: `venda.py`
-
-Representa uma venda completa.
-
-Responsabilidades atuais:
-
-- guardar uma lista de itens vendidos;
-- adicionar somente itens validos na venda;
-- calcular o total da venda somando os subtotais;
-- mostrar um resumo da venda.
-
-A venda agora guarda `ItemVenda`, nao `Produto` diretamente.
-
-Exemplo:
-
-```python
-venda.add_item(item)
-```
-
-## Main
-
-Arquivo: `main.py`
-
-Atualmente serve para montar o fluxo:
-
-1. criar produtos;
-2. criar itens de venda;
-3. criar uma venda;
-4. adicionar os itens na venda;
-5. mostrar o resumo da venda.
-
-Fluxo esperado:
-
-```python
-produto = Produto(1, "Ipa", 20, 10)
-item = ItemVenda(produto, 2)
-
-venda = Venda()
-venda.add_item(item)
-
-venda.resumo_venda()
-```
-
-## Conceitos importantes aprendidos
-
-Antes, a venda acessava diretamente:
-
-```python
-produto.nome
-```
-
-Agora, como a venda guarda itens, o caminho e:
-
-```python
-item.produto.nome
-```
-
-Porque:
+O fluxo atual representa uma venda simples:
 
 ```text
-item -> ItemVenda
-item.produto -> Produto dentro do item
-item.produto.nome -> nome do produto
+Catalogo -> Produto escolhido -> ItemVenda -> Venda -> Resumo
 ```
 
-## Etapa concluida: item valido/invalido
+- `Produto`: guarda ID, nome, preco e estoque.
+- `Catalogo`: guarda, lista e busca produtos pelo ID.
+- `ItemVenda`: liga um produto a uma quantidade, valida o estoque e calcula o subtotal.
+- `Venda`: guarda os itens validos, calcula o total e mostra o resumo.
+- `main.py`: organiza a interacao com o usuario.
 
-O `ItemVenda` agora cria o atributo:
+## O que ja funciona
 
-```python
-self.valido = True
+- cadastro inicial de produtos;
+- listagem do catalogo com ID, preco e estoque;
+- busca de produto pelo ID;
+- selecao de quantidade pelo usuario;
+- validacao de entradas numericas e das opcoes `s/n`;
+- inclusao de varios itens na mesma venda;
+- bloqueio de quantidade zero, negativa ou maior que o estoque;
+- atualizacao do estoque apos uma escolha valida;
+- calculo de subtotal, total e exibicao do resumo da venda.
+
+## Como executar
+
+```bash
+python main.py
 ```
 
-Se nao houver estoque suficiente, o item fica invalido:
+O programa mostra o catalogo, recebe os itens escolhidos e exibe o resumo quando a venda e encerrada.
 
-```python
-self.valido = False
-```
+## Proximos passos
 
-A classe `Venda` ja usa essa informacao em `add_item` para adicionar somente itens validos:
-
-```python
-def add_item(self, item):
-    if item.valido:
-        self.itens.append(item)
-    else:
-        print("Item invalido nao foi adicionado a venda.")
-```
-
-## Depois disso
-
-Possiveis proximos passos:
-
-- pensar em cadastro/lista de produtos;
-- futuramente permitir entrada de dados pelo usuario.
-
-## Feito:
-- impedir quantidade zero ou negativa
-- mostrar estoque restante
-- melhorada mensagem de erro;
-
-## Proximo passo:
-- catalogo
-```
+1. Adicionar pagamento e calculo de troco.
+2. Melhorar a separacao entre a interface do terminal e as regras do sistema.
+3. Criar testes automatizados para as regras de estoque e total.
+4. Persistir produtos e vendas em arquivo ou banco de dados.
