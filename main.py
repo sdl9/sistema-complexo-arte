@@ -12,6 +12,16 @@ def ler_inteiro(mensagem):
         except ValueError:
             print ("Digite um número válido.")
 
+def ler_opcao(mensagem):
+    while True:
+        opcao = input(mensagem).lower()
+
+        if opcao == "s" or opcao == "n":
+            return opcao 
+
+        print("Opção inválida. Digite 's' ou 'n'.")
+
+
 # instanciando um produto e uma venda
 
 produto = Produto(1,"Ipa", 20, 10)
@@ -36,12 +46,13 @@ while continuar == "s":
 
     if produto_escolhido is None:   
         print("Produto não encontrado.")
-            
-    quantidade_escolhida = ler_inteiro("Digite a quantidade:")
+        continue
+           
+    quantidade_escolhida = ler_inteiro("Digite a quantidade: ")
 
     item = ItemVenda(produto_escolhido, quantidade_escolhida)
     venda.add_item(item)
 
-    continuar = input("Adicionar outro item? (s/n): ").lower()
+    continuar = ler_opcao("Adicionar outro item? (s/n): ")
 
 venda.resumo_venda()
