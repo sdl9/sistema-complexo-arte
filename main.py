@@ -2,34 +2,9 @@ from produto import Produto
 from venda import Venda
 from itemVenda import ItemVenda
 from catalogo import Catalogo
+from entrada import Entrada
 
-def ler_inteiro(mensagem):
-    while True:
-        valor_digitado = input(mensagem)
-
-        try:
-            return int(valor_digitado)
-        except ValueError:
-            print ("Digite um número válido.")
-
-def ler_opcao(mensagem):
-    while True:
-        opcao = input(mensagem).lower()
-
-        if opcao == "s" or opcao == "n":
-            return opcao 
-
-        print("Opção inválida. Digite 's' ou 'n'.")
-
-def ler_valor(mensagem):
-    while True:
-        valor_digitado = input(mensagem)
-
-        try: 
-            return float(valor_digitado)
-        except ValueError:
-            print ("Digite um valor válido.")
-
+entrada = Entrada()
 
 # instanciando um produto e uma venda
 
@@ -49,7 +24,7 @@ continuar = "s"
 
 while continuar == "s":
 
-    id_escolhido = ler_inteiro("Digite o ID do produto: ")
+    id_escolhido = entrada.ler_inteiro("Digite o ID do produto: ")
 
     produto_escolhido = catalogo.buscar_produto_por_id(id_escolhido)
 
@@ -57,7 +32,7 @@ while continuar == "s":
         print("Produto não encontrado.")
         continue
        
-    quantidade_escolhida = ler_inteiro("Digite a quantidade: ")
+    quantidade_escolhida = entrada.ler_inteiro("Digite a quantidade: ")
 
     # if quantidade_escolhida <= 0:
     #     print ("Item não adicionado.")
@@ -66,7 +41,7 @@ while continuar == "s":
     item = ItemVenda(produto_escolhido, quantidade_escolhida)
     venda.add_item(item)
 
-    continuar = ler_opcao("Adicionar outro item? (s/n): ")
+    continuar = entrada.ler_opcao("Adicionar outro item? (s/n): ")
 
 if venda.esta_vazia():
     print ("Venda inexistente.")
@@ -74,7 +49,7 @@ else:
     venda.resumo_venda()
 
     while True:
-        valor_pago = ler_valor("Valor pago: R$ ")
+        valor_pago = entrada.ler_valor("Valor pago: R$ ")
         troco = venda.calcular_troco(valor_pago)
 
         if troco is not None:
