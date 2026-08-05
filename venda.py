@@ -17,6 +17,15 @@ class Venda:
 
         return total
 
+    def calcular_troco(self, valor_pago):
+        total = self.calcular_total()
+
+        if valor_pago < total:
+            return None
+        
+        return valor_pago - total 
+
+
     def resumo_venda(self):
         print("Produtos da venda: ")
 

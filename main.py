@@ -21,6 +21,15 @@ def ler_opcao(mensagem):
 
         print("Opção inválida. Digite 's' ou 'n'.")
 
+def ler_valor(mensagem):
+    while True:
+        valor_digitado = input(mensagem)
+
+        try: 
+            return float(valor_digitado)
+        except ValueError:
+            print ("Digite um valor válido.")
+
 
 # instanciando um produto e uma venda
 
@@ -56,3 +65,11 @@ while continuar == "s":
     continuar = ler_opcao("Adicionar outro item? (s/n): ")
 
 venda.resumo_venda()
+
+valor_pago = ler_valor("Valor pago: R$ ")
+troco = venda.calcular_troco(valor_pago)
+
+if troco is None:
+    print ("Pagamento insuficiente.")
+else: 
+    print ("Troco: R$", troco)
