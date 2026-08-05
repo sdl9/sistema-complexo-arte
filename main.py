@@ -56,20 +56,29 @@ while continuar == "s":
     if produto_escolhido is None:   
         print("Produto não encontrado.")
         continue
-           
+       
     quantidade_escolhida = ler_inteiro("Digite a quantidade: ")
+
+    # if quantidade_escolhida <= 0:
+    #     print ("Item não adicionado.")
+    #     continue
 
     item = ItemVenda(produto_escolhido, quantidade_escolhida)
     venda.add_item(item)
 
     continuar = ler_opcao("Adicionar outro item? (s/n): ")
 
-venda.resumo_venda()
+if venda.esta_vazia():
+    print ("Venda inexistente.")
+else:
+    venda.resumo_venda()
 
-valor_pago = ler_valor("Valor pago: R$ ")
-troco = venda.calcular_troco(valor_pago)
+    while True:
+        valor_pago = ler_valor("Valor pago: R$ ")
+        troco = venda.calcular_troco(valor_pago)
 
-if troco is None:
-    print ("Pagamento insuficiente.")
-else: 
+        if troco is not None:
+            break
+        print("Pagamento insuficiente.")
+
     print ("Troco: R$", troco)

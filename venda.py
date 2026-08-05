@@ -9,6 +9,9 @@ class Venda:
         else:
             print("Item não adicionado:", item.motivo_invalido)
 
+    def esta_vazia(self):
+        return not self.itens
+
     def calcular_total(self):
         total = 0
 
