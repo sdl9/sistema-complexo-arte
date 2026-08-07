@@ -277,6 +277,26 @@ Produto e o cadastro.
 Catalogo guarda produtos.
 ItemVenda usa um produto e uma quantidade.
 Venda guarda itens de venda.
+Entrada valida os dados digitados.
 ```
 
 O `main.py` e o lugar onde as pecas sao montadas.
+
+## Aprendizado com assert
+
+`assert` compara o resultado real com o resultado esperado:
+
+```python
+assert venda.calcular_total() == 17
+```
+
+- sem mensagem: o teste passou;
+- `AssertionError`: a expectativa estava diferente do resultado;
+- com parenteses, o metodo e executado;
+- cada teste precisa montar o estado que deseja verificar.
+
+Foram testados venda vazia, subtotal, total, estoque, item invalido e troco.
+
+## Pagamento
+
+`Venda.calcular_troco(valor_pago)` retorna o troco ou `None` quando o pagamento e insuficiente. A classe calcula; o `main.py` decide qual mensagem mostrar.
