@@ -300,3 +300,28 @@ Foram testados venda vazia, subtotal, total, estoque, item invalido e troco.
 ## Pagamento
 
 `Venda.calcular_troco(valor_pago)` retorna o troco ou `None` quando o pagamento e insuficiente. A classe calcula; o `main.py` decide qual mensagem mostrar.
+
+## Parametros e objetos no Catalogo
+
+O argumento enviado define o que o parametro recebe:
+
+```text
+buscar_produto_por_id(2)  -> id_procurado recebe um inteiro
+adicionar_produto(refri)  -> produto recebe um objeto Produto
+```
+
+Em `for produto_cadastrado in self.produtos`, a lista guarda objetos e `produto_cadastrado` aponta temporariamente para um deles.
+
+```text
+produto_cadastrado.id_produto -> ID de um produto que ja esta na lista
+produto.id_produto            -> ID do novo produto recebido
+```
+
+Se os IDs forem iguais, `return False` rejeita a adicao. Se o `for` terminar sem encontrar igualdade, `append` adiciona o objeto e `return True` confirma a operacao.
+
+Regras curtas:
+
+- o argumento determina se o parametro recebe numero, texto ou objeto;
+- a lista guarda objetos; a variavel do `for` aponta para um objeto por vez;
+- `False` indica que a operacao nao foi realizada, nao que o valor esta vazio;
+- o sucesso so pode ser confirmado depois de verificar toda a lista.

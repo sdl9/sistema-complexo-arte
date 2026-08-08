@@ -3,7 +3,12 @@ class Catalogo:
         self.produtos = [] # = quais produtos existem no sistema?
     
     def adicionar_produto(self, produto):
-        self.produtos.append(produto) # função propria de pegar a lista e adicionar +1 produto, que vem de (self, produto)
+        for produto_cadastrado in self.produtos:
+            if produto_cadastrado.id_produto == produto.id_produto:
+                return False
+    
+        self.produtos.append(produto)
+        return True 
 
     def listar_produtos(self):
         for produto in self.produtos:

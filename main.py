@@ -8,7 +8,18 @@ entrada = Entrada()
 
 # instanciando um produto e uma venda
 
-produto = Produto(1,"Ipa", 20, 10)
+id_produto = entrada.ler_inteiro("ID do produto: ")
+nome_produto = entrada.ler_texto("Nome do produto: ")
+preco_produto = entrada.ler_valor("Preço do produto: R$ ")
+estoque_produto = entrada.ler_inteiro("Estoque inicial: ")
+
+produto = Produto(
+    id_produto,
+    nome_produto,
+    preco_produto,
+    estoque_produto
+)
+
 produto2 = Produto(2,"Refri", 5, 10)
 
 catalogo = Catalogo()

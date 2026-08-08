@@ -26,3 +26,12 @@ class Entrada:
                 return float(valor_digitado)
             except ValueError:
                 print ("Digite um valor válido.")
+
+    def ler_texto(self, mensagem):
+        while True:
+            texto_digitado = input(mensagem).strip()
+
+            if not texto_digitado:
+                print("Informe um nome válido")
+            else:
+                return texto_digitado
