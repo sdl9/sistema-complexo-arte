@@ -6,6 +6,10 @@ from entrada import Entrada
 
 entrada = Entrada()
 
+
+catalogo = Catalogo()
+produto2 = Produto(2,"Refri", 5, 10)
+
 # instanciando um produto e uma venda
 
 id_produto = entrada.ler_inteiro("ID do produto: ")
@@ -20,12 +24,11 @@ produto = Produto(
     estoque_produto
 )
 
-produto2 = Produto(2,"Refri", 5, 10)
-
-catalogo = Catalogo()
-
-catalogo.adicionar_produto(produto)
 catalogo.adicionar_produto(produto2)
+cadastro_realizado = catalogo.adicionar_produto(produto)
+
+if not cadastro_realizado:
+    print("Produto não cadastrado: ID duplicado.")
 
 venda = Venda()
 
