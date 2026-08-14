@@ -6,59 +6,57 @@ from entrada import Entrada
 
 entrada = Entrada()
 
-
 catalogo = Catalogo()
-produto2 = Produto(2,"Refri", 5, 10)
 
-# instanciando um produto e uma venda
+continuar_cadastro = "s"
 
-id_produto = entrada.ler_inteiro("ID do produto: ")
-nome_produto = entrada.ler_texto("Nome do produto: ")
-preco_produto = entrada.ler_valor("Preço do produto: R$ ")
-estoque_produto = entrada.ler_inteiro("Estoque inicial: ")
+# cadastro de produtos
 
-produto = Produto(
-    id_produto,
-    nome_produto,
-    preco_produto,
-    estoque_produto
-)
+while continuar_cadastro == "s":
 
-catalogo.adicionar_produto(produto2)
-cadastro_realizado = catalogo.adicionar_produto(produto)
+    id_produto = catalogo.gerar_proximo_id()
+    nome_produto = entrada.ler_texto("Nome do produto: ")
+    preco_produto = entrada.ler_valor("Preço do produto: R$ ")
+    estoque_produto = entrada.ler_inteiro_minimo("Estoque inicial: ", 0)
 
-if not cadastro_realizado:
-    print("Produto não cadastrado: ID duplicado.")
+    novo_produto = Produto(id_produto, nome_produto, preco_produto, estoque_produto)
 
-venda = Venda()
+    cadastro_realizado = catalogo.adicionar_produto(novo_produto)
+
+    if cadastro_realizado:
+        print("Produto cadastrado com ID:", novo_produto.id_produto)
+    else:
+        print("Produto não cadastrado: ID duplicado.")
+
+    continuar_cadastro = entrada.ler_opcao("Cadastrar outro produto? (s/n): ")
 
 catalogo.listar_produtos()
 
-continuar = "s"
+# inicio da venda
 
-while continuar == "s":
+venda = Venda()
+
+continuar_venda = "s"
+
+while continuar_venda == "s":
 
     id_escolhido = entrada.ler_inteiro("Digite o ID do produto: ")
 
     produto_escolhido = catalogo.buscar_produto_por_id(id_escolhido)
 
-    if produto_escolhido is None:   
+    if produto_escolhido is None:
         print("Produto não encontrado.")
         continue
-       
-    quantidade_escolhida = entrada.ler_inteiro("Digite a quantidade: ")
 
-    # if quantidade_escolhida <= 0:
-    #     print ("Item não adicionado.")
-    #     continue
+    quantidade_escolhida = entrada.ler_inteiro_minimo("Digite a quantidade: ", 1)
 
-    item = ItemVenda(produto_escolhido, quantidade_escolhida)
-    venda.add_item(item)
+    novo_item = ItemVenda(produto_escolhido, quantidade_escolhida)
+    venda.add_item(novo_item)
 
-    continuar = entrada.ler_opcao("Adicionar outro item? (s/n): ")
+    continuar_venda = entrada.ler_opcao("Adicionar outro item? (s/n): ")
 
 if venda.esta_vazia():
-    print ("Venda inexistente.")
+    print("Venda inexistente.")
 else:
     venda.resumo_venda()
 
@@ -70,4 +68,4 @@ else:
             break
         print("Pagamento insuficiente.")
 
-    print ("Troco: R$", troco)
+    print("Troco: R$", troco)

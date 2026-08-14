@@ -19,7 +19,7 @@ Entrada -> Catalogo -> Produto -> ItemVenda -> Venda -> Pagamento
 
 ## O que ja funciona
 
-- cadastro inicial de produtos;
+- cadastro de vários produtos pelo terminal;
 - listagem do catalogo com ID, preco e estoque;
 - busca de produto pelo ID;
 - selecao de quantidade pelo usuario;
@@ -41,6 +41,5 @@ O programa mostra o catalogo, recebe os itens escolhidos e exibe o resumo quando
 
 ## Proximos passos
 
-1. Permitir cadastro de produtos pelo terminal.
-2. Persistir produtos e vendas em arquivo ou banco de dados.
-3. Organizar os testes em cenarios independentes.
+1. Persistir produtos e vendas em arquivo ou banco de dados.
+2. Organizar os testes em cenarios independentes.

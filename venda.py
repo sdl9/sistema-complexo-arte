@@ -1,7 +1,7 @@
 class Venda:
 
     def __init__(self):
-        self.itens = [] # = quais itens foram comprados nesta venda?
+        self.itens = []  # = quais itens foram comprados nesta venda?
 
     def add_item(self, item):
         if item.valido:
@@ -25,9 +25,8 @@ class Venda:
 
         if valor_pago < total:
             return None
-        
-        return valor_pago - total 
 
+        return valor_pago - total
 
     def resumo_venda(self):
         print("Produtos da venda: ")
@@ -49,11 +48,7 @@ class Venda:
                 item.calcular_subtotal(),
                 "|",
                 "estoque restante:",
-                item.estoque_restante()
+                item.estoque_restante(),
             )
 
-        print(
-            "Total:",
-            "R$",
-            self.calcular_total()
-        )
+        print("Total:", "R$", self.calcular_total())

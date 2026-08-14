@@ -9,12 +9,21 @@ class Entrada:
             except ValueError:
                 print("Digite um número válido.")
 
+    def ler_inteiro_minimo(self, mensagem, minimo):
+        while True:
+            valor = self.ler_inteiro(mensagem)
+
+            if valor >= minimo:
+                return valor
+            else:
+                print("Mínimo permitido:", minimo)
+
     def ler_opcao(self, mensagem):
         while True:
-            opcao = input(mensagem).lower()
+            opcao = input(mensagem).strip().lower()
 
-            if opcao == "s" or opcao == "n":
-                return opcao 
+            if opcao in ("s", "n"):
+                return opcao
 
             print("Opção inválida. Digite 's' ou 'n'.")
 
@@ -22,10 +31,10 @@ class Entrada:
         while True:
             valor_digitado = input(mensagem)
 
-            try: 
+            try:
                 return float(valor_digitado)
             except ValueError:
-                print ("Digite um valor válido.")
+                print("Digite um valor válido.")
 
     def ler_texto(self, mensagem):
         while True:
